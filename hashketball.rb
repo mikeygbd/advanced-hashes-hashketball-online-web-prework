@@ -247,7 +247,7 @@ game_hash.each do |location, attributes|
 values.each do |name, stats|
   stats.each do |stat, value|
     if stat == :points && value > most_points
-      most_points == value
+      most_points = value
       most_points_player == name
 
 
