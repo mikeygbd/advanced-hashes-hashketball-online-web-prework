@@ -248,7 +248,7 @@ values.each do |name, stats|
   stats.each do |stat, value|
     if stat == :points && value > most_points
       most_points = value
-      most_points_player == name
+      most_points_player == stats
 
 
             end
