@@ -249,8 +249,6 @@ values.each do |name, stats|
     if stat == :points && value > most_points
       most_points = value
       most_points_player = name
-
-
             end
           end
         end
@@ -264,16 +262,18 @@ def winning_team
   score = 0
   best_score = 0
   best_team = ""
-  game_hash.each do |location, team|
-    team.each do |attribute, value|
-      if attribute == :players
-        value.each do |name, stats|
+game_hash.each do |location, team|
+  team.each do |data, values|
+    if data == :players
+      values.each do |name, stats|
           score += stats[:points]
         end
-          if score > best_score
-            best_score = score
-            score = 0
-          best_team = team[:team_name]
+            if score > best_score
+              best_score = score
+              best_team = team[:team_name]
+              
+
+
         end
       end
     end
