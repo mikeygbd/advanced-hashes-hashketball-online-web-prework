@@ -118,33 +118,16 @@ require "pry"
 end
 
 def num_points_scored(name)
-game_hash.each do |k, v|
-  v.each do |k, v|
-    if k == :players
-      v.each do |k, v|
-        if name == k
-          v.each do |k, v|
-            if k == :points
-              return v
-            end
-          end
-        end
-      end
-    end
-  end
-end
 
-end
-
-def shoe_size(name)
-  game_hash.each do |k, v|
-    v.each do |k, v|
-      if k == :players
-        v.each do |k, v|
-          if name == k
-            v.each do |k, v|
-              if k == :shoe
-                return v
+game_hash.each do |location, attributes|
+  attributes.each do |data, value|
+    if data == :players
+      value.each do |names, v|
+        if name == names
+          v.each do |stat, values|
+            if stat == :points
+              return values
+        # binding.pry
               end
             end
           end
@@ -154,74 +137,104 @@ def shoe_size(name)
   end
 end
 
+
+
+
+def shoe_size(name)
+  game_hash.each do |location, attributes|
+    attributes[:players].each do |names, value|
+          if name == names
+            value.each do |stat, v|
+              if stat == :shoe
+                return v
+              end
+            end
+          end
+        end
+      end
+    end
+
+
+
+
+
+
 def team_colors(team)
 
-  game_hash.each do |key, value|
-    value.each do |k, v|
-      if k == :team_name && v == team
+game_hash.each do |location, attributes|
+  attributes.each do |data, values|
+    if data == :team_name && values == team
 
-        return value.fetch(:colors)
+
+            return attributes.fetch(:colors)
+          end
+        end
       end
     end
-  end
-end
+
+
+
+
 
 def team_names
-  team_names = []
-  game_hash.each do |k, v|
-    v.each do |k, v|
+  teams = []
+  game_hash.each do |location, attributes|
+    attributes.each do |k,v|
       if k == :team_name
-        team_names << v
+        teams << v
+
       end
     end
   end
-  team_names
+  teams
 end
 
 def player_numbers(team_name)
   numbers = []
+
   game_hash.each do |location, team|
     if team[:team_name] == team_name
-    team[:players].each do |name, stats|
-      stats.each do |stat, value|
-        if stat == :number
-          numbers << value
-        end
+      team[:players].each do |name, stats|
+          stats.each do |stat, value|
+            if stat == :number
+              numbers << value
+            end
+          end
         end
       end
     end
-  end
-  numbers
+numbers
 end
 
+
+
 def player_stats(player_name)
-  game_hash.each do |location, team|
-    team[:players].each do |name, stats|
-      if name == player_name
-        return stats
+game_hash.each do |location, attributes|
+  attributes[:players].each do |name, stats|
+    if name == player_name
+      return stats
       end
     end
   end
 end
 
 def big_shoe_rebounds
-  largest_size = 0
-  largest_sizeName = ""
-  game_hash.each do |location, team|
-    team.each do |attribute, value|
-      if attribute == :players
-        value.each do |name, stats|
-          stats.each do |stat, v|
-            if stat == :shoe && v > largest_size
-              largest_size = v
-              largest_sizeName = stats
-            end
-          end
+  largest_shoe = 0
+  big_shoe_player = ""
+  game_hash.each do |location, attributes|
+    attributes.each do |data, values|
+    values.each do |name, stats|
+  stats.each do |stat, value|
+    if stat == :shoe && value > largest_shoe
+
+      largest_shoe == value
+      big_shoe_player == name
+
         end
       end
     end
   end
-  largest_sizeName[:rebounds]
+big_shoe_player[:rebounds]
 end
 
 def most_points_scored
