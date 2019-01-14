@@ -272,8 +272,8 @@ game_hash.each do |location, team|
               best_score = score
               score = 0
               best_team = team[:team_name]
-            
-end
+
+
         end
       end
     end
