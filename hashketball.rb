@@ -225,12 +225,10 @@ def big_shoe_rebounds
     attributes.each do |data, values|
     values.each do |name, stats|
   stats.each do |stat, value|
-    if stat == :shoe && value > largest_shoe
-
+    if stat == :shoe && value >= largest_shoe
       largest_shoe == value
       big_shoe_player == name
-
-    end
+          end
         end
       end
     end
