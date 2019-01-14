@@ -240,22 +240,24 @@ end
 
 def most_points_scored
   most_points = 0
-  most_pointsPlayer = ""
-  game_hash.each do |location, team|
-    team.each do |attribute, value|
-      if attribute == :players
-        value.each do |name, stats|
-          stats.each do |stat, v|
-            if stat == :points && v > most_points
-              most_points = v
-              most_pointsPlayer = name
+  most_points_player = ""
+game_hash.each do |location, attributes|
+  attributes.each do |data, values|
+    if data == :players
+values.each do |name, stats|
+  stats.each do |stat, value|
+    if stat == :points && value > most_points
+      most_points == value
+      most_points_player == stats
+      
+  
             end
           end
         end
       end
     end
   end
-  most_pointsPlayer
+most_points_player
 end
 
 def winning_team
