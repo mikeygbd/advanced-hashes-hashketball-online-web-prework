@@ -267,11 +267,12 @@ game_hash.each do |location, team|
     if data == :players
       value.each do |name, stats|
           score += stats[:points]
-        
+
             if score > best_score
               best_score = score
 
               best_team = team[:team_name]
+            end
         end
       end
     end
